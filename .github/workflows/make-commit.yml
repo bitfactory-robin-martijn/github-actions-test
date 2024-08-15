@@ -1,0 +1,30 @@
+name: Make Commit in PR
+
+on:
+  workflow_dispatch:
+
+jobs:
+  make_commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Make a change
+        run: |
+          # Example: Create a file or modify a file
+          echo "This is an automated commit" >> automated_commit.txt
+          git add .
+          git commit -m "Automated commit from GitHub Action"
+
+      - name: Push the commit to PR branch
+        run: |
+          git push origin HEAD:${{ github.head_ref }}
