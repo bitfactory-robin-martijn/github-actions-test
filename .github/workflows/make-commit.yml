@@ -27,4 +27,4 @@ jobs:
 
       - name: Push the commit to PR branch
         run: |
-          git push origin HEAD:${{ github.head_ref }}
+          git push origin ${{ github.head_ref }}
