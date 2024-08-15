@@ -20,11 +20,12 @@ jobs:
 
       - name: Make a change
         run: |
-          # Example: Create a file or modify a file
           echo "This is an automated commit" >> automated_commit.txt
           git add .
           git commit -m "Automated commit from GitHub Action"
 
       - name: Push the commit to PR branch
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          git push origin ${{ github.head_ref }}
+          git push https://$PAT_TOKEN@github.com/${{ github.repository }} HEAD:${{ github.head_ref }}
