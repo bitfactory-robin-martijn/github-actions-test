@@ -2,7 +2,7 @@ name: Required Check for PR
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches: [ ]
 
 jobs:
   check_pr:
